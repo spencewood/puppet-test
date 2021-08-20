@@ -1,7 +1,7 @@
 const chromium = require("chrome-aws-lambda");
 
 exports.handler = async (event) => {
-  let result = null;
+  let screenshot = null;
   let browser = null;
 
   try {
@@ -17,7 +17,10 @@ exports.handler = async (event) => {
 
     await page.goto(event.url || "https://example.com");
 
-    result = await page.title();
+    screenshot = await page.screenshot({
+      encoding: "base64",
+      type: "png",
+    });
   } catch (error) {
     return {
       body: error,
@@ -30,7 +33,11 @@ exports.handler = async (event) => {
   }
 
   return {
-    body: result,
+    body: screenshot,
+    headers: {
+      "Content-Type": `image/png`,
+    },
+    isBase64Encoded: true,
     statusCode: 200,
   };
 };
