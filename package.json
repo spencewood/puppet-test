@@ -1,0 +1,11 @@
+{
+  "name": "puppet-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tyler Spencewood <tspencewood@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer-core": "^10.2.0"
+  }
+}
